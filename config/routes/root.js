@@ -3,9 +3,19 @@
  */
 var express = require('express');
 
+var userRoutes = App.route('userRoutes');
+var feedRoutes = App.route('feedRoutes');
+
 function rootRoutes (app) {
     var rootRouter = express.Router();
-    app.use('/',rootRouter)
+
+    rootRouter.route('/Sign_In').get(userRoutes.SignIn);
+    rootRouter.route('/GetFeeds').get(feedRoutes.GetFeeds);
+    rootRouter.route('/newFeed').post(feedRoutes.NewFeed);
+
+
+    app.use('/',rootRouter);
+
 }
 
 module.exports = rootRoutes;

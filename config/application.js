@@ -8,7 +8,8 @@ var   env         = process.env.NODE_ENV || 'development'
     , packageJson = require('../package.json')
     , path        = require('path')
     , express     = require('express')
-    ,cookieParser = require('cookie-parser');
+    ,cookieParser = require('cookie-parser')
+    ,io           = require('socket.io');
 
 console.log('Loading App in ' + env + ' mode.');
 
@@ -24,24 +25,36 @@ global.App = {
         return require(this.appPath(path))
     }
     , env: env
-    , start: function () {
-        if (!this.started) {
-            this.started = true;
-            this.app.listen(this.port);
-            console.log("Running App Version " + App.version + " on port " + App.port + " in " + App.env + " mode")
-        }
-    }
     , route: function (path) {
         return this.require("app/routes/" + path);
     }
+    ,start : function(){
+        var server= App.app.listen(this.port);
+        io = io.listen(server);
+        console.log("Running App Version " + App.version + " on port " + App.port + " in " + App.env + " mode");
+        return io;
+    }
+    , socket : function (path){
+        return this.require("app/socket/"+ path);
+    }
     , model: function (path) {
-        return this.require("app/models" + path);
+        return this.require("app/models/" + path);
     }
 };
 
 
 
+
+
 //middleware
+App.app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
+
 var bodyParser = require('body-parser');
 App.app.use(bodyParser.urlencoded({extended:true}));
 
