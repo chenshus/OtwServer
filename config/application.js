@@ -29,8 +29,9 @@ global.App = {
         return this.require("app/routes/" + path);
     }
     ,start : function(){
-        var server= App.app.listen(this.port);
-        io = io.listen(server);
+        var http = require('http').Server(App.app);
+        io = io.listen(http);
+        var server= http.listen(this.port);
         console.log("Running App Version " + App.version + " on port " + App.port + " in " + App.env + " mode");
         return io;
     }

@@ -11,7 +11,8 @@ function GetFeeds (req,res){
 }
 
 function NewFeed(req,res){
-
+    console.log('fdsf');
+    res.send('200');
 }
 
 exports.GetFeeds = GetFeeds;
