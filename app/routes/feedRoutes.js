@@ -7,7 +7,9 @@ var Feeds = App.model('Feeds');
 
 
 function GetFeeds (req,res){
-
+Feeds.find({},function(err,docs){
+    console.log(docs);
+})
 }
 
 function NewFeed(req,res){

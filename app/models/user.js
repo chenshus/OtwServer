@@ -12,6 +12,6 @@ var schema = mongoose.Schema({
 
 var UserModel = mongoose.model('User', schema) ;
 
-schema.set('autoIndex',App.env !== 'production')
+schema.set('autoIndex',App.env !== 'production');
 
 module.exports = UserModel;

@@ -3,12 +3,14 @@
  */
 
 var Feed = App.model('Feed');
-var Feeds = App.model('Feeds');
+
 
 exports = module.exports=function(io){
     io.on('connection', function(socket){
         socket.on('PostNewFeed',function (post){
-
+/*
+            CreateFeedModel(post);
+*/
             socket.broadcast.emit('newFeed', post);
 
         });
@@ -18,6 +20,15 @@ exports = module.exports=function(io){
 
 
 function CreateFeedModel(FeedData){
+ var newFeed = Feed({
+     UserId :FeedData.UserId,
+     Feed_Data :FeedData.description,
+     Feed_Time :FeedData.Date
+ });
+    newFeed.save(function (err){
+        console.log(err);
+    });
+
 
 }
 
