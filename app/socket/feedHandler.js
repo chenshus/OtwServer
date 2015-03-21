@@ -8,9 +8,7 @@ var Feed = App.model('Feed');
 exports = module.exports=function(io){
     io.on('connection', function(socket){
         socket.on('PostNewFeed',function (post){
-/*
             CreateFeedModel(post);
-*/
             socket.broadcast.emit('newFeed', post);
 
         });
