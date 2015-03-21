@@ -15,7 +15,7 @@ console.log('Loading App in ' + env + ' mode.');
 
 global.App = {
     app: express()
-    , port: 3000
+    , port: process.env.PORT || 3000
     , version: packageJson.version
     , root: path.join(__dirname, '..')
     , appPath: function (path) {
