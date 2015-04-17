@@ -12,6 +12,7 @@ function rootRoutes (app) {
     /*rootRouter.route('/Sign_In').get(userRoutes.SignIn);*/
     rootRouter.route('/GetFeeds').get(feedRoutes.GetFeeds);
     rootRouter.route('/newFeed').post(feedRoutes.NewFeed);
+    rootRouter.route('/GetFeed').post(feedRoutes.GetFeed);
 
 
     app.use('/',rootRouter);

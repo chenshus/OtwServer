@@ -17,5 +17,10 @@ function NewFeed(req,res){
     res.send('200');
 }
 
+function GetFeed(req,res){
+    Feed.find({_id:req._id})
+}
+
 exports.GetFeeds = GetFeeds;
 exports.NewFeed = NewFeed;
+exports.GetFeed = GetFeed;
