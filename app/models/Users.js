@@ -3,10 +3,12 @@
  */
 var mongoose = require('mongoose');
 
-var  Users =  new mongoose.schema({
-    items :[{type :mongoose.Schema.Types.ObjectId, ref:'User'}]
+var  Users =  new mongoose.Schema({
+    items :[{type :mongoose.Schema.Types.String, ref:'User'}]
 });
 
 
-var Users = mongoose.model('User', Users) ;
+var Users = mongoose.model('Users', Users) ;
 module.exports = Users;
+
+

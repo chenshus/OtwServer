@@ -3,15 +3,17 @@
  */
 var mongoose = require('mongoose');
 
-var schema = mongoose.Schema({
-    UserID:{type : String,required:true},
+
+
+var User = new mongoose.Schema({
+    Email:{type : String,required:true},
     Username:{type : String,required :true},
     Password :{type :String ,required :false}
 });
 
 
-var UserModel = mongoose.model('User', schema) ;
+var UserModel = mongoose.model('User', User) ;
 
-schema.set('autoIndex',App.env !== 'production');
+
 
 module.exports = UserModel;

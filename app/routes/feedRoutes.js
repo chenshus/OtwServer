@@ -17,10 +17,22 @@ function NewFeed(req,res){
     res.send('200');
 }
 
+function GetFeedsByUserId (req,res){
+    Feeds.find({UserId:req.body.Email}, function(err,docs){
+        if(err){
+            res.status(500).send("error occurred "+err);
+        }
+        else{
+            res.status(200).send(docs);
+        }
+    })
+}
+
 function GetFeed(req,res){
-    Feed.find({_id:req._id})
+    Feed.find({_id:req.body._id})
 }
 
 exports.GetFeeds = GetFeeds;
 exports.NewFeed = NewFeed;
 exports.GetFeed = GetFeed;
+exports.GetFeedsByUserId =GetFeedsByUserId;

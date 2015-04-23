@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 
 var Feed = new mongoose.Schema({
     UserId :String,
-    Feed_Data :String,
+    Description :String,
     Feed_Time :Date
 });
 

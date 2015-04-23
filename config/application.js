@@ -58,6 +58,7 @@ App.app.use(function (req, res, next) {
 
 var bodyParser = require('body-parser');
 App.app.use(bodyParser.urlencoded({extended:true}));
+App.app.use(bodyParser.json());
 
 var methodOverride = require('method-override');
 App.app.use(methodOverride(function (req,res){
